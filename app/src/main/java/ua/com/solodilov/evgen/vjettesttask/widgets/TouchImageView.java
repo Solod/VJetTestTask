@@ -399,7 +399,7 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
     /**
      * Set zoom parameters equal to another TouchImageView. Including scale, position,
      * and ScaleType.
-     * @param TouchImageView
+     * @param img
      */
     public void setZoom(TouchImageView img) {
         PointF center = img.getScrollPosition();
@@ -803,7 +803,7 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
     }
 
     public interface OnTouchImageViewListener {
-        public void onMove();
+        void onMove();
     }
 
     /**
@@ -1131,7 +1131,7 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
                 minY = maxY = startY;
             }
 
-            scroller.fling(startX, startY, (int) velocityX, (int) velocityY, minX,
+            scroller.fling(startX, startY, velocityX, velocityY, minX,
                     maxX, minY, maxY);
             currX = startX;
             currY = startY;
