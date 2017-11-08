@@ -6,29 +6,20 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.facebook.Profile;
 
 import ua.com.solodilov.evgen.vjettesttask.R;
 import ua.com.solodilov.evgen.vjettesttask.login_fb.view.LoginActivity;
 import ua.com.solodilov.evgen.vjettesttask.main.view.GalleryFragment;
-import ua.com.solodilov.evgen.vjettesttask.main.view.GalleryView;
 import ua.com.solodilov.evgen.vjettesttask.main.view.ProfileFragment;
-import ua.com.solodilov.evgen.vjettesttask.models.Person;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String PROFILE_OBJECT = "person";
-
-    private Person mPerson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPerson = getIntent().getExtras().getParcelable(PROFILE_OBJECT);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -53,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 startProfileFragment();
                 return true;
             case R.id.action_logout:
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra(LoginActivity.AUTO_START, false);
                 startActivity(intent);
             case android.R.id.home:
@@ -65,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startFragment() {
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(MainActivity.PROFILE_OBJECT, mPerson);
-        Fragment fragment = Fragment.instantiate(this, GalleryFragment.class.getName(), bundle);
+        Fragment fragment = Fragment.instantiate(this, GalleryFragment.class.getName());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, fragment, GalleryFragment.class.getCanonicalName())
                 .commit();
@@ -83,13 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(GalleryFragment.class.getCanonicalName());
         int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count==0) {finishAffinity();
-           // startFragment();
+        if (count == 0) {
+            finishAffinity();
         } else {
-
-             super.onBackPressed();
+            super.onBackPressed();
         }
     }
 }

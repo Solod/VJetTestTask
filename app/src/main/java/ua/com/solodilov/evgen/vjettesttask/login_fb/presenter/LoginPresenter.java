@@ -22,7 +22,7 @@ public class LoginPresenter implements ILoginPresenter {
 
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
-    final Person mPerson = new Person();
+    private final Person mPerson = new Person();
 
     public LoginPresenter(LoginActivity loginActivity) {
         mLoginView = loginActivity;
@@ -79,9 +79,7 @@ public class LoginPresenter implements ILoginPresenter {
                                 e.printStackTrace();
                                 Log.e(this.getClass().getCanonicalName(), "Error: getting data profile");
                             } finally {
-                                Bundle bundle = new Bundle();
-                                bundle.putParcelable(LoginActivity.PROFILE_OBJECT, mPerson);
-                                mLoginView.startActivity(bundle);
+                                mLoginView.startActivity();
                             }
                         }
                     });

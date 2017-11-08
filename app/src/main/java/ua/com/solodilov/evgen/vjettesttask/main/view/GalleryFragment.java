@@ -28,7 +28,6 @@ public class GalleryFragment extends Fragment implements GalleryView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mPresenter.initPerson(getArguments());
         return inflater.inflate(R.layout.fragment_gallery, container, false);
     }
 
