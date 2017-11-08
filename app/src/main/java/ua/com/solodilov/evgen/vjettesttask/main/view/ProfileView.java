@@ -2,10 +2,6 @@ package ua.com.solodilov.evgen.vjettesttask.main.view;
 
 import android.net.Uri;
 
-/**
- * Created by jack on 08.11.17.
- */
-
 public interface ProfileView {
     void setFieldFullName(String fullName);
     void setFieldFirstName(String firstNameName);
